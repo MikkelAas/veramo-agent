@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha test/test.ts",
     "id:list": "ts-node ./src/list-identifiers",
-    "id:create": "ts-node ./src/create-identifier"
+    "id:create": "ts-node ./src/create-identifier",
+    "vc:create": "ts-node ./src/create-credential",
+    "vc:list": "ts-node ./src/list-credentials"
   },
   "keywords": [],
   "author": "",
