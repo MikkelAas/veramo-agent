@@ -34,6 +34,7 @@ import {
 
 // TypeORM is installed with `@veramo/data-store`
 import { createConnection } from 'typeorm';
+import { CredentialIssuer, ICredentialIssuer } from '@veramo/credential-w3c';
 
 // This will be the name for the local sqlite database for demo purposes
 const DATABASE_FILE = 'database.sqlite';
@@ -54,7 +55,7 @@ const dbConnection = createConnection({
     entities: Entities,
 });
 
-export const agent = createAgent<IDIDManager & IKeyManager & IDataStore & IDataStoreORM & IResolver>({
+export const agent = createAgent<IDIDManager & IKeyManager & IDataStore & IDataStoreORM & IResolver & ICredentialIssuer>({
     plugins: [
         new KeyManager({
             store: new KeyStore(dbConnection),
@@ -82,5 +83,6 @@ export const agent = createAgent<IDIDManager & IKeyManager & IDataStore & IDataS
                 ...webDidResolver(),
             }),
         }),
+        new CredentialIssuer()
     ],
 })
